@@ -9,9 +9,11 @@ backend {{ backend.name }}
 {% endif %}
 
   mode {{ backend.mode }}
+
 {% if backend.balance is defined %}
   balance {{ backend.balance }}
 {% endif %}
+
 {% if backend.source is defined %}
   source {{ backend.source }}
 {% endif %}
@@ -88,10 +90,10 @@ backend {{ backend.name }}
 
 {% endfor %}
 
-{% endfor %}
-
 {% if backend.errorfile is defined %}
 {% for errorfile in backend.errorfile %}
   errorfile {{ errorfile.code }} {{errorfile.file }}
 {% endfor %}
 {% endif %}
+
+{% endfor %}
