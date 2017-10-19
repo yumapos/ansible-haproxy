@@ -47,3 +47,7 @@
   option redispatch
   {% endif %}
 {% endif %}
+
+{% if haproxy_defaults_balance is defined %}
+  balance {{ haproxy_defaults_balance }}
+{% endif %}

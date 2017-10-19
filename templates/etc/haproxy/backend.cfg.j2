@@ -9,9 +9,9 @@ backend {{ backend.name }}
 {% endif %}
 
   mode {{ backend.mode }}
-
+{% if backend.balance is defined %}
   balance {{ backend.balance }}
-
+{% endif %}
 {% if backend.source is defined %}
   source {{ backend.source }}
 {% endif %}
