@@ -94,6 +94,15 @@ listen {{ listen.name }}
 
 {% endfor %}
 
+{% for tcp_request in listen.tcp_request | default([]) %}
+  tcp-request {{ tcp_request.subject }} {{ tcp_request.action }} {% if tcp_request.cond is defined %} {{ tcp_request.cond }}{% endif %}
+{% endfor %}
+
+{% for tcp_response_content in listen.tcp_response_content | default([]) %}
+  tcp-response content {{ tcp_response_content.action }} {% if tcp_response_content.cond is defined %} {{ tcp_response_content.cond }}{% endif %}
+
+{% endfor %}
+
 {% for rspadd in listen.rspadd | default([]) %}
   rspadd {{ rspadd.string }}{% if rspadd.cond is defined %} {{ rspadd.cond }}{% endif %}
 

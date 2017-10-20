@@ -79,6 +79,14 @@ backend {{ backend.name }}
 
 {% endfor %}
 
+{% for tcp_request in backend.tcp_request | default([]) %}
+  tcp-request {{ tcp_request.subject }} {{ tcp_request.action }} {% if tcp_request.cond is defined %} {{ tcp_request.cond }}{% endif %}
+{% endfor %}
+
+{% for tcp_response_content in backend.tcp_response_content | default([]) %}
+  tcp-response content {{ tcp_response_content.action }} {% if tcp_response_content.cond is defined %} {{ tcp_response_content.cond }}{% endif %}
+{% endfor %}
+
 {% for compression in backend.compression | default([]) %}
   compression {{ compression.name }} {{ compression.value }}
 {% endfor %}

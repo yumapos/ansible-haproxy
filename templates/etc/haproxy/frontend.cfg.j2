@@ -58,6 +58,10 @@ frontend {{ frontend.name }}
 
 {% endfor %}
 
+{% for tcp_request in frontend.tcp_request | default([]) %}
+  tcp-request {{ tcp_request.subject }} {{ tcp_request.action }} {% if tcp_request.cond is defined %} {{ tcp_request.cond }}{% endif %}
+{% endfor %}
+
 {% for rspadd in frontend.rspadd | default([]) %}
   rspadd {{ rspadd.string }}{% if rspadd.cond is defined %} {{ rspadd.cond }}{% endif %}
 
